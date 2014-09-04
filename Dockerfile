@@ -1,5 +1,5 @@
 FROM phusion/baseimage:0.9.12
-MAINTAINER Brian Prodoehl <bprodoehl@connectify.me>
+MAINTAINER Luis Arias <luis@balsamiq.com>
 
 ENV HOME /root
 
