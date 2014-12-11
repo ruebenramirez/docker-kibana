@@ -1,10 +1,12 @@
 #!/bin/bash
 
-docker pull dockerfile/elasticsearch:latest
-docker build -t kibana4beta2
-
 docker rm -f elasticsearch
 docker rm -f kibana4
+
+docker pull dockerfile/elasticsearch:latest
+docker rmi kibana4beta2
+docker build -t kibana4beta2 .
+
 
 docker run -d \
     -p 9200:9200 \
@@ -13,7 +15,7 @@ docker run -d \
     dockerfile/elasticsearch
 
 docker run -d \
-    -p 80:80 \
+    -p 82:80 \
     -e KIBANA_SECURE=false \
     --link elasticsearch:es \
     --name kibana4 \

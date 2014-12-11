@@ -8,7 +8,7 @@ RUN apt-get -y install wget nginx-full apache2-utils supervisor
 
 WORKDIR /opt
 RUN wget --no-check-certificate -O- https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-BETA2.tar.gz | tar xvfz -
-ADD config/config.js /opt/kibana-4.0.0-BETA2.tar.gz/config.js
+ADD config/config.js /opt/kibana-4.0.0-BETA2/config.js
 RUN mkdir /etc/kibana # This is where the htpasswd file is placed by the run script
 
 ADD nginx_config /opt/nginx_config
