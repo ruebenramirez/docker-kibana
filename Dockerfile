@@ -2,10 +2,17 @@ FROM ubuntu:trusty
 MAINTAINER Luis Arias <luis@balsamiq.com>
 
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get -y install wget nginx-full apache2-utils supervisor
+
+# `psmisc` package provides killall command in debian
+RUN apt-get -y install wget nginx-full apache2-utils supervisor screen psmisc vim less
 
 WORKDIR /opt
 RUN wget --no-check-certificate -O- https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-BETA2.tar.gz | tar xvfz -
+
+#### TODO: fix this: bad practice!  
+# RUN chmod -R 777 /opt/kibana-4.0.0-BETA2
+####
+
 ADD config/config.js /opt/kibana-4.0.0-BETA2/config.js
 RUN mkdir /etc/kibana # This is where the htpasswd file is placed by the run script
 
@@ -20,7 +27,7 @@ ENV KIBANA_SECURE true
 ENV KIBANA_USER kibana
 ENV KIBANA_PASSWORD kibana
 
-EXPOSE 80
+EXPOSE 8282
 
 ADD supervisord.conf /etc/supervisor/supervisord.conf
 CMD ["/usr/bin/supervisord"]
