@@ -14,9 +14,10 @@ docker run -d \
     --name elasticsearch \
     dockerfile/elasticsearch
 
-docker run -d \
+docker run -ti \
     -p 82:80 \
     -e KIBANA_SECURE=false \
     --link elasticsearch:es \
     --name kibana4 \
-    kibana4beta2
+    kibana4beta2 \
+    /bin/bash
