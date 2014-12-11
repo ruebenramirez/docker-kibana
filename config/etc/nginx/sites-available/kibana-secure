@@ -11,7 +11,7 @@ server {
   }
 
   location / {
-    root /opt/kibana-3.1.0;
+    root /opt/kibana-4.0.0-BETA2;
     index index.html index.htm;
 
     if ($http_x_forwarded_proto != "https") {
